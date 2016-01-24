@@ -436,7 +436,7 @@ myLayout = smartSpacing mySpacingWidth
 --
 myManageHook = composeAll
     [ isFullscreen --> doFullFloat
-    , manageHook defaultConfig
+    , manageHook xfceConfig
     , className =? "File Operation Progress"  --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     ]
@@ -488,7 +488,7 @@ myFocusFollowsMouse = True
 --
 main :: IO ()
 main = 
-  xmonad $ defaults { logHook = historyHook }
+  xmonad $ defaults { logHook = historyHook >> ewmhDesktopsLogHook }
 
 ------------------------------------------------------------------------
 -- Combine it all together
@@ -498,7 +498,7 @@ main =
 --
 -- No need to modify this.
 --
-defaults = ewmh defaultConfig  {
+defaults = ewmh xfceConfig  {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
