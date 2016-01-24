@@ -120,7 +120,7 @@ myWorkspaces    = map show [1..10] ++ map (\x -> "F" ++ show x) [1..10]
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 1
-mySpacingWidth  = 1
+mySpacingWidth  = 6
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -210,7 +210,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((modMask,               xK_Tab   ), windows W.focusDown)
+    {-, ((modMask,               xK_Tab   ), windows W.focusDown)-}
 
     -- Move focus to the next window
     , ((modMask,               xK_j     ), windows W.focusDown)
@@ -436,8 +436,9 @@ myLayout = smartSpacing mySpacingWidth
 --
 myManageHook = composeAll
     [ isFullscreen --> doFullFloat
-    , manageHook xfceConfig
+    , manageHook defaultConfig
     , className =? "File Operation Progress"  --> doFloat
+    , resource =? "Do" --> doIgnore
     , resource  =? "desktop_window" --> doIgnore
     ]
 
@@ -498,7 +499,7 @@ main =
 --
 -- No need to modify this.
 --
-defaults = ewmh xfceConfig  {
+defaults = ewmh defaultConfig  {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
