@@ -123,8 +123,10 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # nvm config
 export NVM_DIR=~/.nvm
-if [["$(uname)" == "Darwin"]]; then
+if [ "$(uname)" '==' "Darwin" ]; then
   source $(brew --prefix nvm)/nvm.sh
+else
+  source ${HOME}/.nvm/nvm.sh
 fi
 
 # Docker
