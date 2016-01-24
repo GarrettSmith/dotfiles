@@ -49,7 +49,11 @@ plugins=(git brew bundler rails vagrant web-search docker zsh-syntax-highlightin
 
 # User configuration
 
-export ANDROID_HOME=~/Library/Android/sdk
+if [ "$(uname)" '==' "Darwin" ]; then
+  export ANDROID_HOME=~/Library/Android/sdk
+else
+  export ANDROID_HOME=~/.linuxbrew/opt/android-sdk
+fi
 
 export GOPATH=$HOME/.go
 export GOROOT=/usr/local/opt/go/libexec
@@ -68,7 +72,7 @@ export PATH=$PATH:~/.rvm/rubies/ruby-head/bin
 export PATH=$PATH:$ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools/
-export PATH=$PATH:$ANDROID_HOME/build-tools/21.1.2/
+export PATH=$PATH:$ANDROID_HOME/build-tools/23.0.1/
 export PATH=$PATH:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
