@@ -104,10 +104,14 @@ export EDITOR=vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ts="tig status"
-alias connect_guest="curl 'https://1.1.1.1/login.html' -H 'Origin: https://1.1.1.1' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-CA ,en;q=0.8,en-US;q=0.6,ja;q=0.4' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.104 Safari/537.36' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8' -H 'Cache-Control: max-age=0' -H 'Referer: https://1.1.1.1/login.html?redirect=www.gstatic.com/generate_204' -H 'Connection: keep-alive' -H 'DNT: 1' --data 'buttonClicked=4&err_flag=0&err_msg=&info_flag=0&info_msg=&redirect_url=http%3A%2F%2Fwww.gstatic.com%2Fgenerate_204&network_name=Guest+Network&username=Garrett.Smith&password=ZMuJNSAb' --compressed --insecure"
+alias dc="docker-compose"
+alias dm="docker-machine"
 
- function browser(){
-   open -a Google\ Chrome --args --disable-web-security
+# Make mkdir make dirs all the times
+alias mkdir='mkdir -p'
+
+function browser(){
+ open -a Google\ Chrome --args --disable-web-security
 }
 
 # Use vi key binding
@@ -119,15 +123,9 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # nvm config
 export NVM_DIR=~/.nvm
-if ["$(uname)" == "Darwin"]; then
+if [["$(uname)" == "Darwin"]]; then
   source $(brew --prefix nvm)/nvm.sh
 fi
-
-# Make mkdir make dirs all the times
-alias mkdir='mkdir -p'
-
-# github-release token
-export GITHUB_TOKEN=61f7e580f43000b0e6fb8f84710e2cb07344b78a
 
 # Docker
 export DOCKER_HOST=tcp://192.168.99.100:2376
@@ -135,8 +133,5 @@ export DOCKER_MACHINE_NAME=default
 export DOCKER_TLS_VERIFY=1
 export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
 
-alias dc="docker-compose"
-alias dm="docker-machine"
-
 # Setup fuck
-eval "$(thefuck --alias)"
+#eval "$(thefuck --alias)"
