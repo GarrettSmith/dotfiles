@@ -1,0 +1,231 @@
+!----------------------------------------------------------------------------
+! file:     ~/.xmodmap
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xmodmap:
+!----------------------------------------------------------------------------
+
+!----------------------------------------------------------------------------
+! Modifiers
+!----------------------------------------------------------------------------
+
+! clear the modifiers and locks
+! remember to add them after all keysyms have been assigned
+clear Shift
+clear Control
+clear Mod1
+clear Mod2
+clear Mod3
+clear Mod4
+clear Mod5
+remove lock = Caps_Lock
+
+! Shift + Shift initiates Caps Lock mode
+keycode 50 =    Shift_L
+keycode 62 =    Shift_R
+
+! standard Alt, except I prefer meta over alt
+keycode 64  =   Meta_L Alt_L
+keycode 108 =   Meta_R Alt_R
+
+! "Menu" key, shifts us into the next group permanenty (toggle)
+! I actually don't use this myself, but left it here for future study.
+! keycode 135 = ISO_Next_Group ISO_Prev_Group
+keycode 135 =   Super_R
+
+! standard Control keys
+keycode  37 =   Control_L
+keycode 105 =   Control_R
+
+! Super_L is Mode_switch. Mode_switch sends keys from
+! one group above the current (shifted and unshifted).
+
+! Only use two groups, to keeps switching sane.
+! You can add several groups, but I have not tried with more than 4
+keycode 133 =   Mode_switch
+
+!               |---   Group 1   ---|                   |---   Group 2   ---|
+
+!----------------------------------------------------------------------------
+! Special Keys
+!----------------------------------------------------------------------------
+! map Super_L to escape for much awesome vim
+keycode  66 =   Escape          Escape                  Caps_Lock
+
+! Esc is Multi_key for those fancy compose chars
+! have a look at .Xcompose for more info
+keycode   9 =   Multi_key       NoSymbol                NoSymbol              Terminate_Server
+
+keycode  23 =   Tab             ISO_Left_Tab            NoSymbol
+keycode  22 =   BackSpace       BackSpace               Delete
+keycode  36 =   Return          Return                  NoSymbol
+keycode  65 =   space           space                   BackSpace
+
+!----------------------------------------------------------------------------
+! Num Keys
+!----------------------------------------------------------------------------
+keycode  49 =   grave           asciitilde              NoSymbol
+keycode  10 =   1               exclam                  F1
+keycode  11 =   2               at                      F2
+keycode  12 =   3               numbersign              F3
+keycode  13 =   4               dollar                  F4
+keycode  14 =   5               percent                 F5
+keycode  15 =   6               asciicircum             F6
+keycode  16 =   7               ampersand               F7
+keycode  17 =   8               asterisk                F8
+keycode  18 =   9               parenleft               F9
+keycode  19 =   0               parenright              F10
+keycode  20 =   minus           underscore              F11
+keycode  21 =   equal           plus                    F12
+
+!----------------------------------------------------------------------------
+! Upper Row
+!----------------------------------------------------------------------------
+keycode  24 =   q               Q                       NoSymbol
+keycode  25 =   w               W                       NoSymbol
+keycode  26 =   e               E                       NoSymbol
+keycode  27 =   r               R                       NoSymbol
+keycode  28 =   t               T                       NoSymbol
+keycode  29 =   y               Y                       Home
+keycode  30 =   u               U                       Next
+keycode  31 =   i               I                       Prior
+keycode  32 =   o               O                       End
+keycode  33 =   p               P                       Insert
+keycode  34 =   bracketleft     braceleft               Escape
+keycode  35 =   bracketright    braceright              NoSymbol
+
+!----------------------------------------------------------------------------
+! Home Row
+!----------------------------------------------------------------------------
+keycode  38 =   a               A                       NoSymbol
+keycode  39 =   s               S                       NoSymbol
+keycode  40 =   d               D                       Delete
+keycode  41 =   f               F                       BackSpace
+keycode  42 =   g               G                       NoSymbol
+keycode  43 =   h               H                       Left
+keycode  44 =   j               J                       Down
+keycode  45 =   k               K                       Up
+keycode  46 =   l               L                       Right
+keycode  47 =   semicolon       colon                   NoSymbol
+keycode  48 =   apostrophe      quotedbl                NoSymbol
+keycode  51 =   backslash       bar                     NoSymbol
+
+!----------------------------------------------------------------------------
+! Lower Row
+!----------------------------------------------------------------------------
+keycode  94 =   less            greater                 NoSymbol
+keycode  52 =   z               Z                       NoSymbol
+keycode  53 =   x               X                       NoSymbol
+keycode  54 =   c               C                       NoSymbol
+keycode  55 =   v               V                       NoSymbol
+keycode  56 =   b               B                       NoSymbol
+keycode  57 =   n               N                       NoSymbol
+keycode  58 =   m               M                       NoSymbol
+keycode  59 =   comma           less                    NoSymbol
+keycode  60 =   period          greater                 NoSymbol
+keycode  61 =   slash           question                NoSymbol
+
+!----------------------------------------------------------------------------
+! F keys
+!----------------------------------------------------------------------------
+keycode  67 =   F1              F1                      NoSymbol              XF86_Switch_VT_1
+keycode  68 =   F2              F2                      NoSymbol              XF86_Switch_VT_2
+keycode  69 =   F3              F3                      NoSymbol              XF86_Switch_VT_3
+keycode  70 =   F4              F4                      NoSymbol              XF86_Switch_VT_4
+keycode  71 =   F5              F5                      XF86AudioPlay         XF86_Switch_VT_5
+keycode  72 =   F6              F6                      XF86AudioStop         XF86_Switch_VT_6
+keycode  73 =   F7              F7                      XF86AudioPrev         XF86_Switch_VT_7
+keycode  74 =   F8              F8                      XF86AudioNext         XF86_Switch_VT_8
+keycode  75 =   F9              F9                      NoSymbol              XF86_Switch_VT_9
+keycode  76 =   F10             F10                     XF86AudioMute         XF86_Switch_VT_10
+keycode  95 =   F11             F11                     XF86AudioLowerVolume
+keycode  96 =   F12             F12                     XF86AudioRaiseVolume
+
+!----------------------------------------------------------------------------
+! Fn F keys
+!----------------------------------------------------------------------------
+keycode  77 =   Num_Lock        Pointer_EnableKeys      NoSymbol
+keycode  78 =   Scroll_Lock     NoSymbol                NoSymbol
+
+!-----------------------------------------------------------------------------
+! KP Keys / Fn keys
+!----------------------------------------------------------------------------
+! Fix for laptop sending keypad keys when using Mode_switch
+keycode  87 =   KP_End          KP_1                    Down
+keycode  88 =   KP_Down         KP_2                    Up
+keycode  89 =   KP_Next         KP_3                    Right
+keycode  83 =   KP_Left         KP_4                    Next
+keycode  84 =   KP_Begin        KP_5                    Prior
+keycode  85 =   KP_Right        KP_6                    End
+keycode  79 =   KP_Home         KP_7                    NoSymbol
+keycode  80 =   KP_Up           KP_8                    NoSymbol
+keycode  81 =   KP_Prior        KP_9                    NoSymbol
+keycode  90 =   KP_Insert       KP_0                    NoSymbol
+keycode  86 =   KP_Add          XF86_Next_VMode         NoSymbol
+keycode  82 =   KP_Subtract     XF86_Prev_VMode         NoSymbol
+keycode  91 =   KP_Delete       KP_Decimal              NoSymbol
+keycode  63 =   KP_Multiply     XF86_ClearGrab          Insert
+keycode 106 =   KP_Divide       XF86_Ungrab             NoSymbol
+
+!----------------------------------------------------------------------------
+! Print, Pause, Insert, Delete
+!----------------------------------------------------------------------------
+keycode 107 =   Print           Sys_Req                 NoSymbol
+keycode 127 =   Pause           Break                   NoSymbol
+keycode 118 =   Insert          Insert                  NoSymbol
+keycode 119 =   Delete          Delete                  NoSymbol
+
+!----------------------------------------------------------------------------
+! Home, PgUp, PgDown, End
+!----------------------------------------------------------------------------
+keycode 110 =   Home            Home                    NoSymbol
+keycode 112 =   Prior           Prior                   NoSymbol
+keycode 117 =   Next            Next                    NoSymbol
+keycode 115 =   End             End                     NoSymbol
+
+!----------------------------------------------------------------------------
+! Fn+Home/PgUp/PgDown/End
+!----------------------------------------------------------------------------
+keycode 172 =   XF86AudioPlay
+keycode 174 =   XF86AudioStop
+keycode 173 =   XF86AudioPrev
+keycode 171 =   XF86AudioNext
+
+!----------------------------------------------------------------------------
+! Cursors
+!----------------------------------------------------------------------------
+keycode 113 =   Left            Left                    Home
+keycode 111 =   Up              Up                      Prior
+keycode 114 =   Right           Right                   End
+keycode 116 =   Down            Down                    Next
+
+!----------------------------------------------------------------------------
+! XF86 Keys
+!----------------------------------------------------------------------------
+
+! Fn+F8
+keycode 121 =   XF86AudioMute
+! Fn+F4
+keycode 150 =   XF86Sleep
+
+! Builtin volume keys
+keycode 122 =   XF86AudioLowerVolume
+keycode 123 =   XF86AudioRaiseVolume
+
+
+! Brightness controls on Fn key
+keycode 232 =  XF86MonBrightnessDown
+keycode 233 =  XF86MonBrightnessUp
+! 126 is Brighness up, when it can go no futher
+keycode 126 =  NoSymbol
+
+
+!----------------------------------------------------------------------------
+! Reassign Modifiers
+!----------------------------------------------------------------------------
+add Shift = Shift_L Shift_R
+add Control = Control_L Control_R
+
+add Mod1 = Alt_L Meta_L
+add Mod2 = Num_Lock
+add Mod3 = Mode_switch Mode_switch
+add Mod4 = Super_L Super_R
+

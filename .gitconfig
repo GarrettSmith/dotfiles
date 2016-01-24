@@ -1,0 +1,17 @@
+[user]
+	name = Garrett Smith
+	email = garrettwhsmith@gmail.com
+[github]
+	user = GarrettSmith
+	token = b9e52204d0c8ccba23249b244b34cadc
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+
+[remote "project"]
+  url = ssh://garrettsmith@garrettsmith.webfactional.com:webapps/project_git/repos/compare.git
+[core]
+	excludesfile = /home/garrett/.gitignore
+[credential]
+	helper = cache
