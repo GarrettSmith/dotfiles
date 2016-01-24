@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew bundler rails vagrant web-search docker zsh-syntax-highlighting)
+plugins=(git brew bundler rails vagrant web-search docker zsh-syntax-highlighting last-working-dir)
 
 # User configuration
 
@@ -137,3 +137,8 @@ export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
 
 # Setup fuck
 #eval "$(thefuck --alias)"
+
+# Linux Brew
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
