@@ -427,7 +427,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 Xcursor.theme: Adwaita
 
 rofi.modi:                           window,run
-rofi.opacity:                        95
+rofi.opacity:                        80
 rofi.width:                          100
 rofi.lines:                          15
 rofi.columns:                        1

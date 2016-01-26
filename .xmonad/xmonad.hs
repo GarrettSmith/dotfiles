@@ -125,7 +125,7 @@ mySpacingWidth  = 6
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#999999"
-myFocusedBorderColor = "#67C9D7"
+myFocusedBorderColor = "#fb007a"
 
 -- XMobar colours
 

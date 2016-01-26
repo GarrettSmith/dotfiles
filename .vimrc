@@ -105,6 +105,22 @@ let g:airline_symbols.linenr = ''
 "let g:airline_symbols.readonly = ''
 "let g:airline_symbols.linenr = ''
 
+"let g:airline_section_a       (mode, crypt, paste, iminsert)
+"let g:airline_section_b       (hunks, branch)
+let g:airline_section_b = airline#section#create(['branch']) "(hunks, branch)
+"let g:airline_section_c       (bufferline or filename)
+"let g:airline_section_gutter  (readonly, csv)
+"let g:airline_section_x       (tagbar, filetype, virtualenv)
+"let g:airline_section_y       (fileencoding, fileformat)
+let g:airline_section_z = airline#section#create(['linenr', ':%3v '])
+"(percentage, line number, column number)
+"let g:airline_section_warning (syntastic, whitespace)
+
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'z', 'warning' ]
+    \ ]
+
 " Syntax checkers
 let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['ruby'],
