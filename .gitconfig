@@ -12,8 +12,10 @@
 [remote "project"]
   url = ssh://garrettsmith@garrettsmith.webfactional.com:webapps/project_git/repos/compare.git
 [core]
-	excludesfile = /home/garrett/.gitignore
+	excludesfile = ~/.gitignore
 [credential]
 	helper = cache
 [push]
 	default = simple
+[merge]
+	tool = vimdiff

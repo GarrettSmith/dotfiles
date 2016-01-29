@@ -38,3 +38,6 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+
+# Git
+*.orig
