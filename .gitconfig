@@ -21,3 +21,4 @@
 	tool = vimdiff
 [rerere]
 	enabled = true
+	autoupdate = true
