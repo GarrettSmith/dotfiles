@@ -324,10 +324,10 @@ nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " Arrows navigate windows
-"map <left>  <C-w>h
-"map <down>  <C-w>j
-"map <up>    <C-w>k
-"map <right> <C-w>l
+map <left>  <C-w>h
+map <down>  <C-w>j
+map <up>    <C-w>k
+map <right> <C-w>l
 
 " Tabs
 map <C-n> :tabnew<CR>

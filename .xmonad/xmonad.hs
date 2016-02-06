@@ -436,7 +436,7 @@ myLayout = smartSpacing mySpacingWidth
 --
 myManageHook = composeAll
     [ isFullscreen --> doFullFloat
-    , manageHook defaultConfig
+    , manageHook xfceConfig
     , className =? "File Operation Progress"  --> doFloat
     , resource =? "Do" --> doIgnore
     , resource  =? "desktop_window" --> doIgnore
@@ -499,7 +499,7 @@ main =
 --
 -- No need to modify this.
 --
-defaults = ewmh defaultConfig  {
+defaults = ewmh xfceConfig  {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
