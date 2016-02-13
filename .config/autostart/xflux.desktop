@@ -8,5 +8,5 @@ Exec=/bin/xflux -l 49.5 -g -97.7
 OnlyShowIn=XFCE;
 StartupNotify=false
 Terminal=false
-Hidden=false
+Hidden=true
 
