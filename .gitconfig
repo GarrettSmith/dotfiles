@@ -1,6 +1,6 @@
 [user]
 	name = Garrett Smith
-	email = garrettwhsmith@gmail.com
+	email = garrett.smith@iqmetrix.com
 [github]
 	user = GarrettSmith
 	token = b9e52204d0c8ccba23249b244b34cadc
@@ -14,11 +14,14 @@
 [core]
 	excludesfile = ~/.gitignore
 [credential]
-	helper = cache
 [push]
-	default = simple
+	default = current
 [merge]
 	tool = vimdiff
 [rerere]
 	enabled = true
 	autoupdate = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	required = true
+	clean = git-lfs clean -- %f
