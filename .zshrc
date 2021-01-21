@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew bundler rails vagrant web-search docker zsh-syntax-highlighting last-working-dir)
+plugins=(git zsh-syntax-highlighting last-working-dir)
 
 # User configuration
 
@@ -77,10 +77,10 @@ export PATH=$PATH:/Applications/Momentics.app/host_10_2_0_15/darwin/x86/usr/bin/
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/src/github.com/openshift/source-to-image/_output/local/bin/darwin/amd64
+export PATH=$PATH:/cygdrive/c/Program\ Files/git/bin
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -114,9 +114,9 @@ alias dm="docker-machine"
 # Make mkdir make dirs all the times
 alias mkdir='mkdir -p'
 
-function browser(){
- open -a Google\ Chrome --args --disable-web-security
-}
+#function browser(){
+ #open -a Google\ Chrome --args --disable-web-security
+#}
 
 # Use vi key binding
 #bindkey -v
@@ -129,15 +129,16 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export NVM_DIR=~/.nvm
 if [ "$(uname)" '==' "Darwin" ]; then
   source $(brew --prefix nvm)/nvm.sh
+elif [[ "$OSTYPE" == "cygwin" ]]; then
 else
   source ${HOME}/.nvm/nvm.sh
 fi
 
 # Docker
-export DOCKER_HOST=tcp://192.168.99.100:2376
-export DOCKER_MACHINE_NAME=default
-export DOCKER_TLS_VERIFY=1
-export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
+export DOCKER_HOST=tcp://0.0.0.0:2375
+# export DOCKER_MACHINE_NAME=default
+# export DOCKER_TLS_VERIFY=1
+# export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
 
 # Setup fuck
 #eval "$(thefuck --alias)"
@@ -146,3 +147,23 @@ export DOCKER_CERT_PATH=$HOME/.docker/machine/machines/default
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
+# Cygwin
+if [[ "$OSTYPE" == "cygwin" ]]; then
+  # Use WIN ruby
+  alias gem="gem.bat"
+  alias bundle="bundle.bat"
+  alias irb="irb.bat"
+
+fi
+
+# SSH key setup
+source $HOME/.profile
+#ssh-agent
+#ssh-add $HOME/.ssh/id_rsa
+
+source $ZSH/oh-my-zsh.sh
+
+# set DISPLAY variable to the IP automatically assigned to WSL2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+sudo /etc/init.d/dbus start &> /dev/null

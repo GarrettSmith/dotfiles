@@ -1,5 +1,7 @@
 source ~/.vimrc
 
+set shell=/bin/zsh
+
 " Create terminals
 map <leader>ts <C-w>n:terminal<CR>
 map <leader>tv <C-w>v:terminal<CR>

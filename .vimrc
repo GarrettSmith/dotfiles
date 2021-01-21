@@ -43,7 +43,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'sgur/ctrlp-extensions.vim'
-Bundle 'simnalamburt/vim-mundo'
+"Bundle 'simnalamburt/vim-mundo'
 Bundle 'tomtom/tlib_vim'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-fugitive'
@@ -53,6 +53,15 @@ Bundle 'tpope/vim-surround'
 Bundle 'valloric/YouCompleteMe'
 Bundle 'wavded/vim-stylus'
 Bundle 'whatyouhide/vim-gotham'
+Bundle 'digitaltoad/vim-pug'
+Bundle 'equalsraf/neovim-gui-shim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Quramy/tsuquyomi'
+Bundle 'prettier/vim-prettier'
+Bundle 'xolox/vim-session'
+Bundle 'xolox/vim-misc'
+Bundle 'ianks/vim-tsx'
+Bundle 'styled-components/vim-styled-components'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -126,6 +135,18 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'active_filetypes': ['ruby'],
                            \ 'passive_filetypes': [] }
 
+function! FindConfig(prefix, what, where)
+    let cfg = findfile(a:what, escape(a:where, ' ') . ';')
+    return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
+endfunction
+
+autocmd FileType typescript let b:syntastic_typescript_tslint_args =
+    \ get(g:, '', 'syntastic_typescript_tslint_args') .
+    \ FindConfig('-c', 'build/config/tslint.json', expand('<afile>:p:h', 1))
+
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi', 'tslint']
+
 " Prioritize hg for gutter diffs
 let g:signify_vcs_list = [ 'hg', 'git' ]
 
@@ -133,6 +154,7 @@ let g:signify_vcs_list = [ 'hg', 'git' ]
 let g:ycm_key_list_select_completion = ['<Tab>', '<Down>']
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_server_log_level = 'critical'
 
 " use camelcase for vim-angular file jumping
 let g:angular_filename_convention = 'camelcased'
@@ -141,7 +163,7 @@ let g:angular_filename_convention = 'camelcased'
 "let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmdpalette_execute = 1
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(sw[m-p]|ico|git|svn))$'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|devTemp)|(\.(sw[m-p]|ico|git|svn))$'
 let g:ctrlp_prompt_mappings = {
       \ 'ToggleType(1)':        ['<c-f>', '<c-up>', '<space>'],
       \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
@@ -151,7 +173,7 @@ let g:ctrlp_prompt_mappings = {
 let g:EasyMotion_do_mapping = 1 " Disable default mappings
 
 " vim-closetag
-let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.react.js"
+let g:closetag_filenames = "*.html,*.xhtml,*.jsx,*.react.js,*.tsx"
 
 " Bi-directional find motion
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
@@ -186,7 +208,12 @@ omap / <Plug>(easymotion-tn)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 " gundo
-let g:gundo_right = 1
+"let g:gundo_right = 1
+
+" Auto save and restore sessions ala Chrome
+"let g:session_autosave = 'yes'
+"let g:session_autosave_periodic = 1
+"let g:session_autoload = 'yes'
 
 " Use old regex engine
 "set re=1
@@ -196,6 +223,9 @@ let g:gundo_right = 1
 
 " Remove window seperator char
 set fillchars=vert:\ 
+
+" Don't add comment leaders with o
+set formatoptions=jcrql
 
 " Auto Reload .vimrc on change
 augroup reload_vimrc " {
@@ -296,6 +326,13 @@ if has("gui_running")
   ""set lines=60 columns=120
 endif
 
+if !has("gui_running")
+  "set term=xterm
+  "set t_Co=256
+  "let &t_AB="\e[48;5;%dm"
+  "let &t_AF="\e[38;5;%dm"
+endif
+
 "Theme
 colorscheme pencil
 set background=dark
@@ -346,6 +383,11 @@ nnoremap <S-TAB> <<
 vnoremap <TAB> >gv
 vnoremap <S-TAB> <gv
 
+" alternative for C-o and C-i
+nnoremap <Backspace> <C-o>
+nnoremap <Delete> <C-i>
+nnoremap <Delete> <C-i>
+
 " use C-/ for commenting
 map <C-_> <plug>NERDCommenterToggle
 
@@ -394,18 +436,18 @@ map Q @q
 "nnoremap <esc>^[ <esc>^[
 
 " Insert mode mappings
-imap ;; <ESC>g_a;
-imap ;: <ESC>g_a:
-imap ;+ <ESC>g_a +
-imap ;- <ESC>g_a -
-imap ;{ <ESC>g_a{
-imap ;( <ESC>g_a(
-imap ;[ <ESC>g_a[
-imap ;< <ESC>g_a<
-imap ;, <ESC>g_a,
-imap ;. <ESC>g_a.
-imap ;<Tab> <ESC>g_a
-imap ;<Space> <ESC>g_a 
+"imap ;; <ESC>g_a;
+"imap ;: <ESC>g_a:
+"imap ;+ <ESC>g_a +
+"imap ;- <ESC>g_a -
+"imap ;{ <ESC>g_a{
+"imap ;( <ESC>g_a(
+"imap ;[ <ESC>g_a[
+"imap ;< <ESC>g_a<
+"imap ;, <ESC>g_a,
+"imap ;. <ESC>g_a.
+"imap ;<Tab> <ESC>g_a
+"imap ;<Space> <ESC>g_a 
 
 " Commands
 
